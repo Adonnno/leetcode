@@ -11,29 +11,21 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* lenCheck = head;
+        ListNode* toEnd = head;
+        ListNode* mid = head;
         
-        int len=1;
-        while(lenCheck != nullptr){
-            lenCheck = lenCheck->next;
+        int len=0;
+        int midLen=0;
+        while(toEnd != nullptr){
+            toEnd = toEnd->next;
             len++;
+            if(midLen!=len/2){
+                mid = mid->next;
+            }
+            midLen=len/2;
         }
 
-        int mid =0;
-
-        if(len&1){
-            mid = len/2;
-        }
-        else{
-            mid=len/2 -1;
-        }
-
-        ListNode* finder = head;
-        for(int i=0;i<mid;i++){
-            finder = finder->next;
-        }
-
-        return finder;
+        return mid;
         
     }
 };
